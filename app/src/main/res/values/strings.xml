@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">Agenda</string>
-
-    <string name="nome">Name</string>
     <string name="action_settings">Settings</string>
-    <string name="botao">Ok</string>
-    <string name="nomesDigitados">Names:</string>
     <string name="login">Login</string>
     <string name="userName">User Name</string>
     <string name="password">Password</string>
+    <string name="titleClients">CLIENTS</string>
+    <string name="textViewName">Name</string>
+    <string name="textViewAge">Age</string>
+    <string name="textViewAddress">Address</string>
+    <string name="textViewPhone">Phone</string>
+    <string name="save">Save</string>
+    <string name="add">New</string>
 </resources>

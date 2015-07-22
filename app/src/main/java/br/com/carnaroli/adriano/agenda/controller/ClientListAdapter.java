@@ -1,13 +1,15 @@
-package br.com.carnaroli.adriano.agenda;
+package br.com.carnaroli.adriano.agenda.controller;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.List;
+
+import br.com.carnaroli.adriano.agenda.model.entities.Client;
+import br.com.carnaroli.adriano.agenda.R;
 
 /**
  * Created by Administrador on 20/07/2015.

@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Agenda</string>
+    <string name="action_settings">Configurações</string>
+    <string name="login">Entrar</string>
+    <string name="userName">Usuário</string>
+    <string name="password">Senha</string>
+    <string name="titleClients">CLIENTES</string>
+    <string name="textViewName">Nome</string>
+    <string name="textViewAge">Idade</string>
+    <string name="textViewAddress">Endereço</string>
+    <string name="textViewPhone">Telefone</string>
+    <string name="save">Salvar</string>
+    <string name="add">Novo</string>
+</resources>
