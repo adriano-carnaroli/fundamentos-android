@@ -11,4 +11,8 @@
     <string name="textViewPhone">Phone</string>
     <string name="save">Save</string>
     <string name="add">New</string>
+    <string name="requiredField">Required Field</string>
+    <string name="msgSuccess">Success!</string>
+    <string name="menu_label_edit">Edit</string>
+    <string name="menu_label_delete">Delete</string>
 </resources>

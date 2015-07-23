@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".controller.PrincipalActivity"
+            android:name=".controller.ClientListActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".controller.PersistClientActivity"
+            android:name=".controller.ClientPersistActivity"
             android:label="@string/app_name" >
         </activity>
     </application>

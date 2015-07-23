@@ -11,4 +11,8 @@
     <string name="textViewPhone">Telefone</string>
     <string name="save">Salvar</string>
     <string name="add">Novo</string>
+    <string name="requiredField">Campo Obrigatório</string>
+    <string name="msgSuccess">Sucesso!</string>
+    <string name="menu_label_edit">Editar</string>
+    <string name="menu_label_delete">Excluir</string>
 </resources>
