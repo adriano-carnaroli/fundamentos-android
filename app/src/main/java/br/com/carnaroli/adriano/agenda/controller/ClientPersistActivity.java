@@ -67,7 +67,9 @@ public class ClientPersistActivity extends AppCompatActivity {
     }
 
     private Client bindClient(){
-        Client client = new Client();
+        if(client == null){
+            client = new Client();
+        }
         client.setName(editTextName.getText().toString());
         client.setAge(Integer.valueOf(editTextAge.getText().toString()));
         client.setAddress(editTextAddress.getText().toString());

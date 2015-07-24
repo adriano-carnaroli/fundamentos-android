@@ -15,4 +15,8 @@
     <string name="msgSuccess">Sucesso!</string>
     <string name="menu_label_edit">Editar</string>
     <string name="menu_label_delete">Excluir</string>
+    <string name="confirm_progress">Confirmar Exclusão?</string>
+    <string name="confirm">Confirmar</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
 </resources>

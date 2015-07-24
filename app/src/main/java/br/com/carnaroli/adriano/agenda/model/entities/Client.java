@@ -7,12 +7,14 @@ import java.io.Serializable;
 import java.util.List;
 
 import br.com.carnaroli.adriano.agenda.model.persistence.MemoryClientRepository;
+import br.com.carnaroli.adriano.agenda.model.persistence.SQLiteClientRepository;
 
 /**
  * Created by Administrador on 20/07/2015.
  */
 public class Client implements Serializable, Parcelable {
 
+    private Integer id;
     private String name;
     private Integer age;
     private String address;
@@ -84,15 +86,15 @@ public class Client implements Serializable, Parcelable {
     }
 
     public void save(){
-        MemoryClientRepository.getInstance().save(this);
+        SQLiteClientRepository.getInstance().save(this);
     }
 
     public static List<Client> getAll(){
-        return MemoryClientRepository.getInstance().getAll();
+        return SQLiteClientRepository.getInstance().getAll();
     }
 
     public void delete() {
-        MemoryClientRepository.getInstance().delete(this);
+        SQLiteClientRepository.getInstance().delete(this);
     }
 
     @Override
@@ -102,6 +104,7 @@ public class Client implements Serializable, Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id == null ? -1 : id);
         dest.writeString(name == null ? "" : name);
         dest.writeString(phone == null ? "" : phone);
         dest.writeInt(age == null ? -1 : age);
@@ -109,6 +112,8 @@ public class Client implements Serializable, Parcelable {
     }
 
     private void readToParcel(Parcel in) {
+        int partialId = in.readInt();
+        id = partialId == -1 ? null : partialId;
         name = in.readString();
         phone = in.readString();
         int partialAge = in.readInt();
@@ -125,4 +130,12 @@ public class Client implements Serializable, Parcelable {
             return new Client[size];
         }
     };
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }

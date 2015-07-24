@@ -1,5 +1,7 @@
 package br.com.carnaroli.adriano.agenda.controller;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -89,9 +91,25 @@ public class ClientListActivity extends AppCompatActivity {
             goToClientPersist.putExtra(ClientPersistActivity.CLIENT_PARAM, (Parcelable) client);
             startActivity(goToClientPersist);
         }else if(item.getItemId() == R.id.menuDelete){
-            client.delete();
-            refreshClientList();
-            Toast.makeText(ClientListActivity.this, R.string.msgSuccess, Toast.LENGTH_SHORT).show();
+
+            new AlertDialog.Builder(ClientListActivity.this)
+                .setMessage(getString(R.string.confirm_progress))
+                .setTitle(getString(R.string.confirm))
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        client.delete();
+                        refreshClientList();
+                        Toast.makeText(ClientListActivity.this, R.string.msgSuccess, Toast.LENGTH_SHORT).show();
+                    }
+                }).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                       dialog.cancel();
+                    }
+                })
+                .create()
+                .show();
         }
         return super.onContextItemSelected(item);
     }
