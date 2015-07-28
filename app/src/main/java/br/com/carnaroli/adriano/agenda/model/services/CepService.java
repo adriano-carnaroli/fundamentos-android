@@ -45,7 +45,7 @@ public final class CepService {
             e.printStackTrace();
         }
 
-        return null;
+        return clientAddress;
     }
 
 }

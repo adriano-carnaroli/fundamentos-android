@@ -1,5 +1,6 @@
 package br.com.carnaroli.adriano.agenda.controller;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcel;
@@ -31,6 +32,11 @@ public class ClientPersistActivity extends AppCompatActivity {
     private EditText editTextAddress;
     private EditText editTextPhone;
     private EditText editTextCep;
+    private EditText editTextTipoDeLogradouro;
+    private EditText editTextLogradouro;
+    private EditText editTextBairro;
+    private EditText editTextCidade;
+    private EditText editTextEstado;
     private Button btnFindCep;
 
     @Override
@@ -56,6 +62,11 @@ public class ClientPersistActivity extends AppCompatActivity {
         editTextAddress = (EditText) findViewById(R.id.edtTextAddress);
         editTextPhone = (EditText) findViewById(R.id.edtTextPhone);
         editTextCep = (EditText) findViewById(R.id.edtTextCep);
+        editTextTipoDeLogradouro = (EditText) findViewById(R.id.edtTextTipoDeLogradouro);
+        editTextLogradouro = (EditText) findViewById(R.id.edtTextLogradouro);
+        editTextBairro = (EditText) findViewById(R.id.edtTextBairro);
+        editTextCidade = (EditText) findViewById(R.id.edtTextCidade);
+        editTextEstado = (EditText) findViewById(R.id.edtTextEstado);
         bindButtonFindCep();
     }
 
@@ -79,7 +90,8 @@ public class ClientPersistActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menuSave) {
 
-            if (FormHelper.requiredValidate(ClientPersistActivity.this, editTextName, editTextAge, editTextAddress, editTextPhone)) {
+            if (FormHelper.requiredValidate(ClientPersistActivity.this, editTextName, editTextAge, editTextAddress, editTextPhone,
+                    editTextCep, editTextTipoDeLogradouro, editTextLogradouro, editTextBairro, editTextCidade, editTextEstado)) {
                 Client client = bindClient();
                 client.save();
                 Toast.makeText(ClientPersistActivity.this, R.string.msgSuccess, Toast.LENGTH_LONG).show();
@@ -97,6 +109,12 @@ public class ClientPersistActivity extends AppCompatActivity {
         client.setAge(Integer.valueOf(editTextAge.getText().toString()));
         client.setAddress(editTextAddress.getText().toString());
         client.setPhone(editTextPhone.getText().toString());
+        client.setBairro(editTextBairro.getText().toString());
+        client.setCep(editTextCep.getText().toString());
+        client.setCidade(editTextCidade.getText().toString());
+        client.setEstado(editTextEstado.getText().toString());
+        client.setLogradouro(editTextLogradouro.getText().toString());
+        client.setTipoDeLogradouro(editTextTipoDeLogradouro.getText().toString());
         return client;
     }
 
@@ -105,13 +123,23 @@ public class ClientPersistActivity extends AppCompatActivity {
         editTextAge.setText(client.getAge().toString());
         editTextAddress.setText(client.getAddress());
         editTextPhone.setText(client.getPhone());
+        editTextTipoDeLogradouro.setText(client.getTipoDeLogradouro());
+        editTextLogradouro.setText(client.getLogradouro());
+        editTextBairro.setText(client.getBairro());
+        editTextCidade.setText(client.getCidade());
+        editTextEstado.setText(client.getEstado());
+        editTextCep.setText(client.getCep());
     }
 
     private class GetAddressByCep extends AsyncTask<String, Void, ClientAddress>{
 
+        private ProgressDialog progressDialog;
+
         @Override
         protected void onPreExecute() {
-            super.onPreExecute();
+            progressDialog = new ProgressDialog(ClientPersistActivity.this);
+            progressDialog.setMessage(getString(R.string.loading));
+            progressDialog.show();
         }
 
         @Override
@@ -120,8 +148,14 @@ public class ClientPersistActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(ClientAddress aVoid) {
-            super.onPostExecute(aVoid);
+        protected void onPostExecute(ClientAddress clientAddress) {
+            editTextCidade.setText(clientAddress.getCidade().toString());
+            editTextBairro.setText(clientAddress.getBairro().toString());
+            editTextLogradouro.setText(clientAddress.getLogradouro().toString());
+            editTextTipoDeLogradouro.setText(clientAddress.getTipoDeLogradouro().toString());
+            editTextEstado.setText(clientAddress.getEstado().toString());
+
+            progressDialog.dismiss();
         }
     }
 
