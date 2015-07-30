@@ -42,7 +42,6 @@ public class ClientPersistActivity extends AppCompatActivity {
     private EditText editTextBairro;
     private EditText editTextCidade;
     private EditText editTextEstado;
-    private Button btnFindCep;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,12 +85,29 @@ public class ClientPersistActivity extends AppCompatActivity {
         editTextAddress = (EditText) findViewById(R.id.edtTextAddress);
         editTextPhone = (EditText) findViewById(R.id.edtTextPhone);
         editTextCep = (EditText) findViewById(R.id.edtTextCep);
+        editTextCep.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_action_action_search, 0);
+        editTextCep.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int DRAWABLE_LEFT = 0;
+                final int DRAWABLE_TOP = 1;
+                final int DRAWABLE_RIGHT = 2;
+                final int DRAWABLE_BOTTOM = 3;
+
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (editTextCep.getRight() - editTextCep.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        new GetAddressByCep().execute(editTextCep.getText().toString());
+                    }
+                }
+                return false;
+            }
+        });
+
         editTextTipoDeLogradouro = (EditText) findViewById(R.id.edtTextTipoDeLogradouro);
         editTextLogradouro = (EditText) findViewById(R.id.edtTextLogradouro);
         editTextBairro = (EditText) findViewById(R.id.edtTextBairro);
         editTextCidade = (EditText) findViewById(R.id.edtTextCidade);
         editTextEstado = (EditText) findViewById(R.id.edtTextEstado);
-        bindButtonFindCep();
     }
 
     /**
@@ -120,16 +136,6 @@ public class ClientPersistActivity extends AppCompatActivity {
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
-    }
-
-    private void bindButtonFindCep() {
-        btnFindCep = (Button) findViewById(R.id.buttonFindCep);
-        btnFindCep.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new GetAddressByCep().execute(editTextCep.getText().toString());
-            }
-        });
     }
 
     @Override

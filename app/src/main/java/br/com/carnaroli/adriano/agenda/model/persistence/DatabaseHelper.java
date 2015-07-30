@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String BANCO_DE_DADOS = "MY_DATABASE";
-    private static final int VERSION = 1;
+    private static final int VERSION = 2;
 
     public DatabaseHelper(Context context) {
         super(context, DatabaseHelper.BANCO_DE_DADOS, null, DatabaseHelper.VERSION);
@@ -23,6 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL(UserContract.getCreateSql());
+        db.execSQL(UserContract.insertUserAdminOnDatabase());
     }
 }
