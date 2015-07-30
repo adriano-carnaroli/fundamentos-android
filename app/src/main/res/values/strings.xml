@@ -19,7 +19,7 @@
     <string name="confirm">Confirm</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="cep">CEP</string>
+    <string name="cep">PostCode</string>
     <string name="find">Find</string>
     <string name="tipoDeLogradouro">Tipo de Logradouro</string>
     <string name="logradouro">Logradouro</string>

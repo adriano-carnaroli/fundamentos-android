@@ -19,6 +19,7 @@
     <string name="confirm">Confirmar</string>
     <string name="yes">Sim</string>
     <string name="no">Não</string>
+    <string name="cep">Cep</string>
     <string name="find">Buscar</string>
     <string name="tipoDeLogradouro">Tipo de Logradouro</string>
     <string name="logradouro">Logradouro</string>
